@@ -1,0 +1,41 @@
+globalConfig:
+  author: zhouyi@foresee.com.cn
+  open: false
+  idType: AUTO
+  fileOverride: true
+dataSourceConfig:
+  url: jdbc:mysql://10.10.4.41:3306/open_scheduler?useUnicode=true&useSSL=false&characterEncoding=utf8
+  driverName: com.mysql.jdbc.Driver
+  username: open_scheduler
+  password: open_scheduler
+packageConfig:
+  parent: com.foresee.shop
+  moduleName: order
+  entity: model
+  service: service
+  serviceImpl: service.impl
+  mapper: dao
+  xml: mapper.xml
+  controller: rest.back
+  pathInfo:
+        entity_path: D:\icap_demo\shop-order\shop-order-model\src\main\java\com\foresee\shop\order\model
+    service_path: D:\icap_demo\shop-order\shop-order-service\src\main\java\com\foresee\shop\order\service
+    service_impl_path: D:\icap_demo\shop-order\shop-order-service\src\main\java\com\foresee\shop\order\service\impl
+    mapper_path: D:\icap_demo\shop-order\shop-order-model\src\main\java\com\foresee\shop\order\dao
+    xml_path: D:\icap_demo\shop-order\shop-order-model\src\main\resources\com\foresee\shop\order\mapper
+    controller_path: D:\icap_demo\shop-order\shop-order-rest\src\main\java\com\foresee\shop\order\rest\back
+strategyConfig:
+  naming: underline_to_camel
+  columnNaming: underline_to_camel
+  entityLombokModel: true
+  superMapperClass: com.foresee.icap.framework.data.mybatis.IBaseMapper
+  superServiceClass: com.foresee.icap.framework.data.service.IBaseService
+  superServiceImplClass: com.foresee.icap.framework.data.service.BaseServiceImpl
+  controllerMappingHyphenStyle: true
+  tablePrefix:
+    - t_
+  include:
+    - t_job_data
+    - t_error_code
+    - t_job_region
+    - t_job_batch

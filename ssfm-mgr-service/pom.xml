@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+            http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+   
+    <artifactId>ssfm-mgr-service</artifactId>
+    <name>ssfm-mgr-service</name>
+	<description>社保费管理服务系统-service layer</description>
+    <packaging>jar</packaging>
+	
+	<parent>
+        <groupId>com.foresee.ssfm</groupId>
+        <artifactId>ssfm-mgr</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    
+    <dependencies>
+		<dependency>
+			<groupId>com.foresee.ssfm</groupId>
+			<artifactId>ssfm-mgr-model</artifactId>
+		</dependency>
+		
+		<dependency>
+            <groupId>com.foresee.icap</groupId>
+            <artifactId>icap-framework-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+  
+    <build>
+    	<plugins>
+			  <!--??-->
+			  <plugin>
+                 <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-compiler-plugin</artifactId>
+		     </plugin>
+			 <!--??-->
+    		 <plugin> 
+		        <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId> 
+		     </plugin>
+			  <!--??????-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <!--???????-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+            </plugin>
+    	</plugins>
+    </build>
+</project>

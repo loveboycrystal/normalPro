@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <artifactId>ssfm-mgr-model</artifactId>
+    <name>ssfm-mgr-model</name>
+	<description>社保费管理服务系统-model layer</description>
+    <parent>
+        <groupId>com.foresee.ssfm</groupId>
+        <artifactId>ssfm-mgr</artifactId>
+        <version>0.0.1</version>
+    </parent>
+	
+    <dependencies>
+        <dependency>
+            <groupId>com.foresee.ssfm</groupId>
+            <artifactId>ssfm-mgr-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.foresee.icap</groupId>
+            <artifactId>icap-framework-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.foresee.icap</groupId>
+            <artifactId>icap-framework-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+    
+    <build>
+		<plugins>
+    		<plugin> 
+		         <groupId>org.apache.maven.plugins</groupId>
+                 <artifactId>maven-deploy-plugin</artifactId>
+		    </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+			    <groupId>org.mybatis.generator</groupId>
+			    <artifactId>mybatis-generator-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+    </build>
+</project>

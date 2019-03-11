@@ -1,0 +1,3 @@
+setx FTCSP_EUREKA_SERVER_URL "http://10.10.0.206:8761/eureka/" -m
+setx FTCSP_CONFIG_SERVER_URL "http://10.10.0.206:8861" -m
+setx FTCSP_DEVELOPER_NAME "-cq" -m
