@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.foresee.icap</groupId>
+        <artifactId>icap-parent</artifactId>
+        <version>1.0.6.RELEASE</version>
+    </parent>
+
+	<description>社保费管理服务系统</description>
+
+    <groupId>com.foresee.ssfm</groupId>
+    <artifactId>ssfm-mgr</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+    <name>ssfm-mgr</name>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.version>3.0</maven.compiler.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!--model层依赖-->
+            <dependency>
+                <groupId>com.foresee.ssfm</groupId>
+                <artifactId>ssfm-mgr-model</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <!--service层依赖-->
+            <dependency>
+                <groupId>com.foresee.ssfm</groupId>
+                <artifactId>ssfm-mgr-api</artifactId>
+                <version>0.0.1</version>
+            </dependency>
+            <!--service层依赖-->
+            <dependency>
+                <groupId>com.foresee.ssfm</groupId>
+                <artifactId>ssfm-mgr-service</artifactId>
+                <version>0.0.1</version>
+            </dependency>            
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <!--插件管理-->
+        <pluginManagement>
+            <plugins>
+                <!--maven deploy plugin-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>2.8.2</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+                <!--maven compiler plugin-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+						<testSource>${java.version}</testSource>
+                        <testTarget>${java.version}</testTarget>
+                    </configuration>
+                </plugin>
+                <!--maven generator plugin-->
+                <plugin>
+                    <groupId>org.mybatis.generator</groupId>
+                    <artifactId>mybatis-generator-maven-plugin</artifactId>
+                    <version>1.3.2</version>
+                    <configuration>
+                        <verbose>true</verbose>
+                        <overwrite>true</overwrite>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>mysql</groupId>
+                            <artifactId>mysql-connector-java</artifactId>
+                            <version>5.1.37</version>
+                        </dependency>
+						<dependency>
+                            <groupId>com.foresee.mybatis</groupId>
+                            <artifactId>mybatis-generator-core</artifactId>
+                            <version>1.0.1</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+
+                <!--依赖springboot-->
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <configuration>
+                        <mainClass>com.foresee.ssfm.rest.DemoUserApplication</mainClass>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--依赖docker插件-->
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.3.7</version>
+                    <configuration>
+                        <username>${DOCKER_REPO_USERNAME}</username>
+                        <password>${DOCKER_REPO_PASSWORD}</password>
+                        <repository>${DOCKER_REPO_HOST}/jspt/${app_name}</repository>
+                        <tag>${project.version}.${BUILD_NUMBER}</tag>
+                        <buildArgs>
+                            <SOURCE_JAR_FILE>target/${project.build.finalName}.jar</SOURCE_JAR_FILE>
+                            <DOCKER_JAR_FILE>/app/${project.build.finalName}.jar</DOCKER_JAR_FILE>
+                            <DOCKER_APP_NAME>ssfm</DOCKER_APP_NAME>
+                        </buildArgs>
+                    </configuration>
+                </plugin>
+				
+				<!--生成单元测试报告-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.19.1</version>
+                    <configuration>
+                        <!--设置包含的测试类 -->
+                        <includes>
+                            <include>******Test</include>
+                        </includes>
+                        <!-- 设置不进行测试类 -->
+                        <excludes>
+                            <exclude>Test*</exclude>
+                        </excludes>
+                        <!-- 跳过测试阶段，測試類写的有问题也会出错，一般不推荐 -->
+                        <!--<skip>true</skip> -->
+                        <argLine>-XX:-UseSplitVerifier</argLine>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>test</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+
+
+
+                <!-- 单元测试报告html -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>2.12.2</version>
+                    <configuration>
+                        <showSuccess>false</showSuccess>
+                    </configuration>
+                    <executions>
+                        <execution>
+                           <phase>test</phase>
+                        </execution>
+                    </executions>
+                </plugin>
+
+
+                <!--单元测试覆盖报告-->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <configuration>
+                        <formats>
+                            <format>html</format>
+                            <format>xml</format>
+                        </formats>
+                        <instrumentation>
+                            <!--Application排除查单元测试-->
+                            <excludes>
+                                <exclude>src/main/java/com/foresee/**/rest/*Application.java</exclude>
+                            </excludes>
+                        </instrumentation>
+                        </configuration>
+                    <executions>
+                        <execution>
+                            <id>cobertura-report</id>
+                            <goals>
+                                <goal>cobertura</goal>
+                                <goal>clean</goal>
+                            </goals>
+                            <phase>package</phase>
+                        </execution>
+                    </executions>
+                    </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <modules>
+        <module>ssfm-mgr-model</module>
+        <module>ssfm-mgr-api</module>
+        <module>ssfm-mgr-service</module>
+        <module>ssfm-mgr-rest</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://120.78.83.4:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://120.78.83.4:8081/nexus/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
+</project>
