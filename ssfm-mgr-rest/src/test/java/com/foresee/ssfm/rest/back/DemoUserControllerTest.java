@@ -60,7 +60,7 @@ public class DemoUserControllerTest extends BaseSpringWebTest {
     @Test
     public void pageDemoUserDTO() throws Exception {
         DemoUserQO demoUserDTO=new DemoUserQO();
-        RestRequestBuilder mockRestRequest = RestRequestBuilder.create("100010001").post("/back/DemoUserService/pageDemoUserAllDTO").userId("111111111111")
+        RestRequestBuilder mockRestRequest = RestRequestBuilder.create("100010001").get("/back/DemoUserService/pageDemoUserAllDTO").userId("111111111111")
                 .body(demoUserDTO).contentType(MediaType.APPLICATION_JSON_UTF8);
         Response response = mockRest(mockRestRequest);
         assertTrue(response.isSuccess());

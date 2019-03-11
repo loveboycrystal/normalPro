@@ -62,7 +62,7 @@
         <AsyncLogger name="com.foresee.icap.common" level="INFO"/>
         <AsyncLogger name="com.ibatis" level="DEBUG"/>
         <AsyncLogger name="java.sql" level="DEBUG"/>
-        <root level="debug">
+        <root level="info">
             <appenderref ref="CONSOLE"/>
             <appenderref ref="RollingFileInfo"/>
             <appenderref ref="RollingFileWarn"/>
