@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class DemoUserQO extends BasePageQueryParam {
 
-    private Long userName;
+    private String userName;
 
     /**
      * 用户Id

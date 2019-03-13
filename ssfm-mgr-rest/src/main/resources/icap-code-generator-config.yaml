@@ -1,8 +1,9 @@
 globalConfig:
   author: chenensheng@foresee.com.cn
   open: false
-  idType: AUTO
+  idType: INPUT
   fileOverride: true
+  dateType: ONLY_DATE
 dataSourceConfig:
   url: jdbc:mysql://119.29.109.156:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8
   driverName: com.mysql.jdbc.Driver
@@ -34,6 +35,6 @@ strategyConfig:
   controllerMappingHyphenStyle: true
   restControllerStyle : true
   tablePrefix:
-    - t_
+    - t_ssfm_
   include:
-    - t_ssfm_enterprise
+    - t_ssfm_pay_detail

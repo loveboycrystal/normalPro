@@ -10,6 +10,7 @@ import com.foresee.ssfm.dto.DemoUserDTO;
 import com.foresee.ssfm.dto.SimpleDemoUserDTO;
 import com.foresee.ssfm.qo.DemoUserQO;
 import com.foresee.ssfm.qo.EnterpriseQO;
+import com.foresee.ssfm.qo.PayDetailQO;
 import com.foresee.ssfm.qo.SimpleDemoUserQO;
 import com.foresee.ssfm.service.IDemoUserService;
 import org.junit.After;
@@ -44,7 +45,10 @@ public class ControllerTest extends BaseSpringWebTest {
 
     /**
      * 测试问题
-     *  1.
+     *  1.model实体主键@tableId问题
+     *  2.如何获取用户信息，并校验接口调用权限，是否登录
+     *  3.接口post方式能成功调用，改为get方式脚本测试报错，postman等工具测试正常
+     *  4.数据库date字段生成到model为localdate，应为date
      */
 
 
@@ -61,7 +65,7 @@ public class ControllerTest extends BaseSpringWebTest {
         demoUserDTO.setUserId(4444444444L);
         demoUserDTO.setUserName("Chenes");
         RestRequestBuilder mockRestRequest = RestRequestBuilder.create("100010001")
-                .get("/back/testservice/testparam").userId("111111111111")
+                .post("/back/testservice/testparam").userId("111111111111")
                 .body(demoUserDTO).contentType(MediaType.APPLICATION_JSON_UTF8);
         Response response = mockRest(mockRestRequest);
         assertTrue(response.isSuccess());
@@ -75,6 +79,18 @@ public class ControllerTest extends BaseSpringWebTest {
         RestRequestBuilder mockRestRequest = RestRequestBuilder.create("100010001")
                 .post("/ssfm/enterprise/getenterprisebyid").userId("111111111111")
                 .body(enterpriseQO).contentType(MediaType.APPLICATION_JSON_UTF8);
+        Response response = mockRest(mockRestRequest);
+        assertTrue(response.isSuccess());
+
+    }
+
+    @Test
+    public void getEnterprisePayDetailList() throws Exception {
+        PayDetailQO payDetailQO = new PayDetailQO();
+        payDetailQO.setEnterpriseId(1);
+        RestRequestBuilder mockRestRequest = RestRequestBuilder.create("100010001")
+                .post("/ssfm/paydetail/getenterprisepaydetaillist").userId("111111111111")
+                .body(payDetailQO).contentType(MediaType.APPLICATION_JSON_UTF8);
         Response response = mockRest(mockRestRequest);
         assertTrue(response.isSuccess());
 
