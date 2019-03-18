@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.foresee.ssfm.dao.PayDetailMapper">
+    <select id="getEnterprisePayDetailList" resultType="com.foresee.ssfm.dto.PayDetaiDTO" parameterType="com.foresee.ssfm.qo.PayDetailQO">
+        SELECT paydt.*, enterprise.enterprise_name,enterprise.pay_no,enterprise.address
+        FROM t_ssfm_pay_detail paydt
+        left join t_ssfm_enterprise enterprise on paydt.enterprise_id=enterprise.enterprise_id
+        where 1=1
+        <if test="enterpriseId != null">
+           and paydt.enterprise_id = ${enterpriseId}
+        </if>
+        <if test="payNo != null">
+            and paydt.pay_no = #{payNo}
+        </if>
+    </select>
+</mapper>

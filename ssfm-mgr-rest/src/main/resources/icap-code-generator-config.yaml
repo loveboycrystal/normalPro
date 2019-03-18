@@ -1,16 +1,17 @@
 globalConfig:
-  author: zhouyi@foresee.com.cn
+  author: chenensheng@foresee.com.cn
   open: false
-  idType: AUTO
+  idType: INPUT
   fileOverride: true
+  dateType: ONLY_DATE
 dataSourceConfig:
-  url: jdbc:mysql://10.10.4.41:3306/open_scheduler?useUnicode=true&useSSL=false&characterEncoding=utf8
+  url: jdbc:mysql://119.29.109.156:3306/test?useUnicode=true&useSSL=false&characterEncoding=utf8
   driverName: com.mysql.jdbc.Driver
-  username: open_scheduler
-  password: open_scheduler
+  username: chenes
+  password: Ces2311429!
 packageConfig:
-  parent: com.foresee.shop
-  moduleName: order
+  parent: com.foresee
+  moduleName: ssfm
   entity: model
   service: service
   serviceImpl: service.impl
@@ -18,12 +19,12 @@ packageConfig:
   xml: mapper.xml
   controller: rest.back
   pathInfo:
-        entity_path: D:\icap_demo\shop-order\shop-order-model\src\main\java\com\foresee\shop\order\model
-    service_path: D:\icap_demo\shop-order\shop-order-service\src\main\java\com\foresee\shop\order\service
-    service_impl_path: D:\icap_demo\shop-order\shop-order-service\src\main\java\com\foresee\shop\order\service\impl
-    mapper_path: D:\icap_demo\shop-order\shop-order-model\src\main\java\com\foresee\shop\order\dao
-    xml_path: D:\icap_demo\shop-order\shop-order-model\src\main\resources\com\foresee\shop\order\mapper
-    controller_path: D:\icap_demo\shop-order\shop-order-rest\src\main\java\com\foresee\shop\order\rest\back
+    entity_path: D:\chenes\project_space\ssfm-mgr\ssfm-mgr-model\src\main\java\com\foresee\ssfm\model
+    service_path: D:\chenes\project_space\ssfm-mgr\ssfm-mgr-service\src\main\java\com\foresee\ssfm\service
+    service_impl_path: D:\chenes\project_space\ssfm-mgr\ssfm-mgr-service\src\main\java\com\foresee\ssfm\service\impl
+    mapper_path: D:\chenes\project_space\ssfm-mgr\ssfm-mgr-model\src\main\java\com\foresee\ssfm\dao
+    xml_path: D:\chenes\project_space\ssfm-mgr\ssfm-mgr-model\src\main\resources\com\foresee\ssfm\mapper
+    controller_path: D:\chenes\project_space\ssfm-mgr\ssfm-mgr-rest\src\main\java\com\foresee\ssfm\rest\back
 strategyConfig:
   naming: underline_to_camel
   columnNaming: underline_to_camel
@@ -32,10 +33,8 @@ strategyConfig:
   superServiceClass: com.foresee.icap.framework.data.service.IBaseService
   superServiceImplClass: com.foresee.icap.framework.data.service.BaseServiceImpl
   controllerMappingHyphenStyle: true
+  restControllerStyle : true
   tablePrefix:
-    - t_
+    - t_ssfm_
   include:
-    - t_job_data
-    - t_error_code
-    - t_job_region
-    - t_job_batch
+    - t_ssfm_pay_detail
