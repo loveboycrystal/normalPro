@@ -41,6 +41,7 @@ public class EnterpriseController {
         EnterpriseDTO enterpriseDTO  = iEnterpriseService.getEnterpriseByID(enterpriseQO.getEnterpriseId());
         System.out.println(enterpriseDTO.getEnterpriseName());
         System.out.println(enterpriseDTO);
+        System.out.println(enterpriseDTO);
         return Response.successData(enterpriseDTO);
     }
 }
