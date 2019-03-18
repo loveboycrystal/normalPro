@@ -21,4 +21,5 @@ public interface DemoUserMapper extends IBaseMapper<DemoUser> {
      * @return
      */
     DemoUserDTO findDemoUserByUserName(String userName);
+
 }
