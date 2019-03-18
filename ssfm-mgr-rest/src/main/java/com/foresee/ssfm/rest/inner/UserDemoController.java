@@ -39,5 +39,6 @@ public class UserDemoController implements DemoUserInnerApi {
     @Override
     public Response<DemoUserDTO> getByUserId(@Valid SimpleDemoUserQO simpleDemoUserQO) {
         return Response.successData(this.demoUserService.getDemoUserByUserId(simpleDemoUserQO.getUserId()));
+        System.out.println("");
     }
 }
