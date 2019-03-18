@@ -44,6 +44,7 @@ public class EnterpriseController {
         System.out.println(enterpriseDTO);
         System.out.println(enterpriseDTO);
         System.out.println(enterpriseDTO);
+        System.out.println(enterpriseDTO);
         return Response.successData(enterpriseDTO);
     }
 }
