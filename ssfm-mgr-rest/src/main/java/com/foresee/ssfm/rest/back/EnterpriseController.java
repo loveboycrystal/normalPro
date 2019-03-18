@@ -40,7 +40,7 @@ public class EnterpriseController {
     public Response<EnterpriseDTO> getEnterpriseByID(@RequestBody @Validated EnterpriseQO enterpriseQO) {
         EnterpriseDTO enterpriseDTO  = iEnterpriseService.getEnterpriseByID(enterpriseQO.getEnterpriseId());
         System.out.println(enterpriseDTO.getEnterpriseName());
-
+        System.out.println(enterpriseDTO);
         return Response.successData(enterpriseDTO);
     }
 }
