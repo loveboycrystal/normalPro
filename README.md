@@ -1,1 +1,1 @@
-this is  readme.md file
+本项目源于foresee，以学习之用，如有商用请联系foresee研发部，本项目代码和作者无任何关系。
